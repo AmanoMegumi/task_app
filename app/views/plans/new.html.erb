@@ -33,11 +33,6 @@
             <th><%= f.label :checkbox ,"終日" %></th>
             <td>
                 <%= f.check_box :checkbox, {}, true, false %>
-                <% if plan.checkbox == true %>
-                    ○
-                <% else plan.checkbox == false %>
-
-                <% end %>
                 終日の場合はチェックを入れます
             </td>
         </tr>
