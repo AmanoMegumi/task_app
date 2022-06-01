@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReScheduleApp</title>
+    <title>ScheduleApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>Ruby on Rails スケジュール管理アプリ</h1>
+    </header>
+
+    <tbody>
+      <div class="main_container">
+        <%= yield %>
+      </div>
+    </tbody>
+
+    <footer>
+      <h1>現在の日時  : <%= Date.current.strftime('%Y年%m月%d日') %>    スケジュール合計  :  <%= Plan.count %> </h1>
+    </footer>
   </body>
 </html>

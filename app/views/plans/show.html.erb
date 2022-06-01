@@ -1,0 +1,38 @@
+<h3>ユーザー詳細</h3>
+
+<table>
+    <tr>
+        <th>タイトル</th>
+        <td><%= @plan.title %></td>
+    </tr>
+    <tr>
+        <th>開始日</th>
+        <td><%= l @plan.start %></td>
+    </tr>
+    <tr>
+        <th>投稿日時</th>
+        <td><%= l @plan.updated_at %></td>
+    </tr>
+    <tr>
+        <th>終日</th>
+        <td>
+            <% if @plan.checkbox == true %>
+                ○
+            <% else plan.checkbox == false %>
+
+            <% end %>
+        </td>
+    </tr>
+    <tr>
+        <th>スケジュールメモ</th>
+        <td><%= @plan.comment %></td>
+    </tr>
+</table>
+
+<div>
+    <ul>
+        <li><%= link_to "スケジュール一覧に戻る", :plans %></li>
+        <li><%= link_to "スケジュールを編集する", edit_plan_path(@plan) %></li>
+        <li><%= link_to "スケジュールを削除", @plan, method: :delete, data: { confirm: "本当に削除しますか？" } %></li>
+    </ul>
+</div>
