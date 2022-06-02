@@ -1,0 +1,52 @@
+<h2>スケジュール編集</h2>
+
+<div class="flash_container">
+    <% if flash[:success] %>
+        <p class="flash success"><%= flash[:success] %></p>
+    <% end %>
+
+    <% if flash[:failure] %>
+        <p class="flash failure"><%= flash[:failure] %></p>
+    <% end %>
+</div>
+
+<%= render "shared/error", obj: @plan %>
+
+<%= form_with(model: @plan, local: true) do |f| %>
+    <table>
+        <tr>
+            <th><%= f.label :title ,"タイトル" %></th>
+            <td><%= f.text_field :title %></td>
+        </tr>
+
+        <tr>
+            <th><%= f.label :start ,"開始日" %></th>
+            <td><%= f.date_field :start %></td>
+        </tr>
+
+        <tr>
+            <th><%= f.label :finish ,"終了日" %></th>
+            <td><%= f.date_field :finish %></td>
+        </tr>
+
+        <tr>
+            <th><%= f.label :checkbox , "終日" %></th>
+            <td>
+                <%= f.check_box :checkbox %>
+                終日の場合はチェックを入れます
+            </td>
+        </tr>
+
+        <tr>
+            <th><%= f.label :comment ,"スケジュールメモ" %></th>
+            <td><%= f.text_area :comment, class: "plans_comment" %></td>
+        </tr>
+    </table>
+
+    <div>
+        <ul>
+            <li><%= f.submit "スケジュールの編集を完了する" ,class: "plans_submit" %></li>
+            <li><%= link_to "スケジュール一覧に戻る", :plans %></li>
+        </ul>
+    </div>
+<% end %>

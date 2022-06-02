@@ -1,0 +1,62 @@
+<div class="information">
+    <h2>スケジュール一覧</h2>
+</div>
+
+<div class="flash_container">
+    <% if flash[:success] %>
+        <p class="flash success"><%= flash[:success] %></p>
+    <% end %>
+
+    <% if flash[:failure] %>
+        <p class="flash failure"><%= flash[:failure] %></p>
+    <% end %>
+</div>
+
+<table>
+    <thead>
+        <th>ID</th>
+        <th>タイトル</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>終日</th>
+        <th>スケジュール更新日</th>
+        <th>確認</th>
+        <th>編集</th>
+        <th>削除</th>
+    </thead>
+    <tbody>
+        <% if Plan.exists? %>
+            <% @plans.each do |plan| %>
+                <tr>
+                    <td><%= plan.id %></td>
+                    <td><%= plan.title %></td>
+                    <td><%= l plan.start %></td>
+                    <td><%= l plan.finish %></td>
+                    <td>
+                        <% if plan.checkbox == true %>
+                            ○
+                        <% else plan.checkbox == false %>
+
+                        <% end %>
+                    </td>
+                    <td><%= plan.updated_at.to_s(:datetime_jp) %></td>
+                    <td>
+                        <%= link_to "確認", plan %>
+                    </td>
+                    <td>
+                        <%= link_to "編集", [:edit, plan] %>
+                    </td>
+                    <td>
+                        <%= link_to "削除", plan, method: :delete, data: {confirm: "本当に削除しますか？"}%>
+                    </td>
+                </tr>
+            <% end %>
+        <% else %>
+            <tr>
+                <td colspan="9">現在登録しているスケジュールはありません</td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<p><%= link_to "スケジュール新規登録", :new_plan %></p>
